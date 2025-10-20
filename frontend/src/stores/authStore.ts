@@ -44,14 +44,19 @@ export const useAuthStore = defineStore("authStore", () => {
   }
 
   async function logout() {
-    await authService.logout();
-    usuario.value = undefined;
-    limparLocalStorage();
-    router.push("/login");
-    setTimeout(() => {
-      pedidoStore.resetDadosPedidos();
-      notificacaoStore.resetDadosNotificacoes();
-    }, 200);
+    try {
+      await authService.logout();
+      usuario.value = undefined;
+      limparLocalStorage();
+      router.push("/login");
+      setTimeout(() => {
+        pedidoStore.resetDadosPedidos();
+        notificacaoStore.resetDadosNotificacoes();
+      }, 200);
+    } catch (e: any) {
+      showSnackbar(e.response.data.message, "error");
+      console.error(e);
+    }
   }
 
   async function registrar() {

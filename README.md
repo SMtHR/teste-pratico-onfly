@@ -6,7 +6,7 @@ Aplicação desenvolvida com Vue 3 (e Vuetify) e Laravel 12
 
 ## Instruções para testar a aplicação
 
-- Clone o projeto do repositório: xxxxx
+- Clone o projeto do repositório
 - Abra a pasta raiz do projeto
 - Abra um terminal e aplique o comando:
 
@@ -16,7 +16,7 @@ docker compose up -d --build
 
 O arquivo `compose.yaml` instalará todas as dependências, configurará o ambiente e subirá os containeres automaticamente.
 
-- Aguarde até que os containeres terminem de montar
+- Aguarde até que os containeres terminem de montar e estejam 100% operantes.
 
 ---
 
