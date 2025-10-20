@@ -1,0 +1,8 @@
+html,
+body {
+  font-family: "Public Sans", sans-serif;
+}
+
+.v-application {
+  font-family: "Public Sans", sans-serif !important;
+}

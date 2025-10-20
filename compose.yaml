@@ -1,0 +1,67 @@
+services:
+  # --- Serviço do Backend (Laravel 12) ---
+  backend:
+    build:
+      context: ./backend # Caminho para o diretório do Laravel
+      dockerfile: Dockerfile
+    container_name: laravel-api
+    ports:
+      - "8000:8000" # Expõe o 'artisan serve'
+    volumes:
+      # Mapeia todo o código do Laravel para dentro do contêiner
+      # O hot-reloading é garantido por 'artisan serve'
+      - ./backend:/var/www/html
+    # Comando para iniciar o container
+    command: >
+      bash -c "
+        echo 'Iniciando serviço de backend...' &&
+        # Garante que o .env exista
+        if [ ! -f .env ]; then cp .env.example .env; fi &&
+        # Instala dependências do composer
+        composer install &&
+        # Cria o arquivo do banco de dados SQLite se não existir
+        touch database/database.sqlite &&
+        # Roda as migrações (cria as tabelas)
+        php artisan migrate && php artisan db:seed --class=AdminSeeder
+        # Inicia o servidor de desenvolvimento
+        php artisan serve --host=0.0.0.0 --port=8000
+      "
+    networks:
+      - onsky-network
+    # [Opcional, mas recomendado para Linux/Mac]
+    # Garante que o usuário do container tenha o mesmo ID do seu usuário local
+    # Isso evita problemas de permissão de arquivos (ex: logs, cache)
+    user: "${UID:-1000}:${GID:-1000}"
+
+  # --- Serviço do Frontend (Vue 3) ---
+  frontend:
+    build:
+      context: ./frontend # Caminho para o diretório do Vue
+      dockerfile: Dockerfile
+    container_name: vue-app
+    ports:
+      - "5173:5173" # Porta padrão do Vite (Vue 3)
+    volumes:
+      # Mapeia o código do Vue para dentro do contêiner
+      # O Vite (npm run dev) cuidará do hot-reloading
+      - ./frontend:/app
+      # [Opcional] Se você não quiser ter o node_modules no seu host:
+      # Descomente a linha abaixo para usar um volume anônimo
+      # - /app/node_modules
+    # 1. Defina explicitamente o entrypoint para o shell
+    entrypoint: /bin/sh
+
+    # 2. Passe o comando para o shell (usando 'sh' em vez de 'bash')
+    command: >
+      -c "
+        echo 'Iniciando serviço de frontend...' &&
+        npm install &&
+        npm run dev -- --host
+      "
+    networks:
+      - onsky-network
+
+# Rede compartilhada para os contêineres
+networks:
+  onsky-network:
+    driver: bridge
