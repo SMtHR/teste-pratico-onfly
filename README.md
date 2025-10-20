@@ -7,6 +7,11 @@ Aplicação desenvolvida com Vue 3 (e Vuetify) e Laravel 12
 ## Instruções para testar a aplicação
 
 - Clone o projeto do repositório
+
+```
+git clone https://github.com/SMtHR/teste-pratico-onfly.git
+```
+
 - Abra a pasta raiz do projeto
 - Abra um terminal e aplique o comando:
 
@@ -60,14 +65,14 @@ php artisan test
 
       > Obs.: Tenha certeza de que existam pedidos condizentes com as condições presentes nestas URIs. Ajuste os parâmetros como achar necessário.
 
-      `http://localhost:8000/api/pedidos?status=solicitado`
-      `http://localhost:8000/api/pedidos?status=aprovado`
-      `http://localhost:8000/api/pedidos?status=cancelado`
-      `http://localhost:8000/api/pedidos?status=solicitado&destino=Curitiba`
-      Busca por pedidos com datas de ida e volta entre:
-      `http://localhost:8000/api/pedidos?dt_ida=2025-10-25&dt_volta=2025-11-28`
-      Busca por pedidos criados entre as datas:
-      `http://localhost:8000/api/pedidos?dt_inicial=2025-10-25&dt_final=2025-11-28`
-      <br>
+      - `http://localhost:8000/api/pedidos?status=solicitado`
+      - `http://localhost:8000/api/pedidos?status=aprovado`
+      - `http://localhost:8000/api/pedidos?status=cancelado`
+      - `http://localhost:8000/api/pedidos?status=solicitado&destino=Curitiba`
+        Busca por pedidos com datas de ida e volta entre:
+      - `http://localhost:8000/api/pedidos?dt_ida=2025-10-25&dt_volta=2025-11-28`
+        Busca por pedidos criados entre as datas:
+      - `http://localhost:8000/api/pedidos?dt_inicial=2025-10-25&dt_final=2025-11-28`
+        <br>
 
     - Minha ideia era utilizar esta funcionalidade para filtrar os pedidos a partir do clique nos contadores ao lado da tabela, atualizando a tabela de acordo. Infelizmente, como a biblioteca fornecia funcionalidade semelhante, optei por deixar essa implementação por último, mas não consegui realizá-la em tempo hábil.
