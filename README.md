@@ -47,11 +47,16 @@ php artisan test
 
 - O banco de dados é o SQLite, padrão do Laravel. Por isso, não é necessária nenhuma configuração adicional.
 - Existem três formas de filtrar os pedidos por "Status" na aplicação:
+
   - Organizando os itens ao clicar no header "Status" na tabela de pedidos.
   - Pesquisando o status desejado no campo "Pesquise aqui" acima da tabela (Este campo pode ser usado para pesquisar qualquer outra propriedade dos pedidos, não somente o Status).
   - Utilizando queries strings na url:
+
     - Não foi possível incorporar está funcionalidade no escopo do front-end do projeto devido a funcionalidades semelhantes que a biblioteca utilizada fornece. Entretanto, a funcionalidade está implementada na API e pode ser testada enviando queries strings na URL.
-    - Exemplos para teste:
+    - Utilizando o Postman ou softwares similares, insira seu token de autenticação JWT, que se encontrará no Local Storage do seu navegador após o login, no cabeçalho da requisição e teste as seguintes URIs de exemplo:
+
+      > Obs.: Tenha certeza de que existam pedidos condizentes com as condições presentes nestas URIs. Ajuste os parâmetros como achar necessário.
+
       `http://localhost:8000/api/pedidos?status=solicitado`
       `http://localhost:8000/api/pedidos?status=aprovado`
       `http://localhost:8000/api/pedidos?status=cancelado`

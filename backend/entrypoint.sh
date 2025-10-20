@@ -22,6 +22,7 @@ touch database/database.sqlite
 # Este comando é seguro para ser executado múltiplas vezes se necessário.
 php artisan migrate:fresh --force
 php artisan db:seed --class=AdminSeeder
+php artisan db:seed --class=PedidoSeeder
 
 # Gera o segredo do JWT
 php artisan jwt:secret --force

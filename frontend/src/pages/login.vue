@@ -15,36 +15,37 @@ meta:
           <v-card-title primary-title class="text-h3"> Onsky </v-card-title>
           <v-card-title class="text-subtitle"> Login </v-card-title>
           <v-card-text>
-            <v-text-field
-              v-model="authStore.loginForm.email"
-              label="E-mail"
-              variant="outlined"
-              density="compact"
-              width="100%"
-              autocomplete="off"
-              clearable
-              rounded
-              class="mb-4"
-            ></v-text-field>
-
-            <v-text-field
-              v-model="authStore.loginForm.password"
-              label="Senha"
-              variant="outlined"
-              density="compact"
-              width="100%"
-              autocomplete="off"
-              type="password"
-              clearable
-              rounded
-              class="mb-4"
-            ></v-text-field>
-            <BotaoPadrao
-              text="Login"
-              color="info"
-              class="w-100"
-              @click="authStore.login()"
-            />
+            <v-form @submit.prevent="authStore.login()">
+              <v-text-field
+                v-model="authStore.loginForm.email"
+                label="E-mail"
+                variant="outlined"
+                density="compact"
+                width="100%"
+                autocomplete="off"
+                clearable
+                rounded
+                class="mb-4"
+              ></v-text-field>
+              <v-text-field
+                v-model="authStore.loginForm.password"
+                label="Senha"
+                variant="outlined"
+                density="compact"
+                width="100%"
+                autocomplete="off"
+                type="password"
+                clearable
+                rounded
+                class="mb-4"
+              ></v-text-field>
+              <BotaoPadrao
+                type="submit"
+                text="Login"
+                color="info"
+                class="w-100"
+              />
+            </v-form>
             <BotaoPadrao
               to="registrar"
               text="Registrar"

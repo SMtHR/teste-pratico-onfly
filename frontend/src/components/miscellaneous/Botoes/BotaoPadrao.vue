@@ -1,5 +1,6 @@
 <template>
   <v-btn
+    :type="type ?? 'button'"
     :color="color ?? ''"
     :variant="hover ? 'flat' : 'outlined'"
     rounded
@@ -13,7 +14,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-defineProps(["text", "color"]);
+defineProps(["text", "color", "type"]);
 
 const hover = ref(false);
 </script>

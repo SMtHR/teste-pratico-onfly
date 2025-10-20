@@ -10,19 +10,6 @@
         Informe os dados abaixo para criar um novo pedido
       </v-card-subtitle>
       <v-card-text class="px-10">
-        <!-- <v-text-field
-          v-model="authStore.usuario.usuario"
-          label="Nome do Solicitante"
-          variant="outlined"
-          density="compact"
-          width="100%"
-          autocomplete="off"
-          hint="Não se preocupe, este campo é preenchido automaticamente com o seu nome de usuário"
-          readonly
-          persistent-hint
-          rounded
-          class="mb-4"
-        ></v-text-field> -->
         <v-text-field
           v-model="pedidoStore.criarPedidoForm.destino"
           label="Destino"
@@ -82,11 +69,9 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from "@/stores/authStore";
 import { usePedidoStore } from "@/stores/pedidoStore";
 
 const pedidoStore = usePedidoStore();
-const authStore = useAuthStore();
 </script>
 
 <style scoped></style>
